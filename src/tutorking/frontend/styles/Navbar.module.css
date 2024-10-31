@@ -1,0 +1,46 @@
+
+.profile_img {
+  width: 50px;  /* Set a width */
+  height: 50px; /* Set a height */
+  border-radius: 50%; /* Makes the image circular */
+  object-fit: cover; /* Ensures the image covers the area */
+  margin-right: 10px; /* Space between the image and text */
+}
+
+.right{
+  display: flex;
+  gap: 1rem;
+  align-items: center; /* Center items vertically */
+}
+
+
+.left{
+  display: flex;
+  gap: 1rem;
+  align-items: center; /* Center items vertically */
+}
+
+.link {
+  color: white;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.navbar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Center items vertically */
+  background-color: #333;
+  padding: 1rem;
+}
+
+.navLinks {
+  list-style-type: none;
+  display: flex;
+  gap: 2rem; /* Space between links */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+}

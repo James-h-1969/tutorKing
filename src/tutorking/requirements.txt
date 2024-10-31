@@ -1,2 +1,11 @@
-fastapi[standard]==0.115.0
-uvicorn[standard]==0.30.6
+fastapi[standard]
+uvicorn
+sqlmodel
+typer
+dynaconf
+jinja2
+python-jose[cryptography]
+passlib[bcrypt]
+python-multipart
+psycopg2-binary
+aiomysql

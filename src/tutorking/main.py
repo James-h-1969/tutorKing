@@ -1,16 +1,37 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
-
+from sqlalchemy import Column, Integer, String, DateTime, func
+from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
+from sqlalchemy.orm import sessionmaker
 import uvicorn
 
-### Create FastAPI instance 
+# Dependency to get the database session
+async def get_db() -> AsyncSession:
+    async with AsyncSessionLocal() as session:
+        yield session
+from routers.users.routes import router as user_router
+
+# get the DB from .env file
+from dotenv import load_dotenv
+import os
+load_dotenv()
+DATABASE_URL = os.getenv("DATABASE_URL")  
+
+engine = create_async_engine(DATABASE_URL, echo=True)
+AsyncSessionLocal = sessionmaker(
+    bind=engine,
+    class_=AsyncSession,
+    expire_on_commit=False,
+)
+
+# Create FastAPI instance 
 app = FastAPI(
     title="tutorking",
     description="App to manage tutoring",
     version="0.0.1"
 )
 
-# add middleware to allow for CORS. 
+# Add middleware to allow for CORS. 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:3000/"],
@@ -19,9 +40,14 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
-@app.get("/test")
-def test_fast_api():
-    return {"message": "Hello from FastAPI"}
+app.include_router(user_router)
+
+# Create the database tables asynchronously
+async def init_db():
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
 
 if __name__=="__main__":
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    import asyncio
+    asyncio.run(init_db())  # Initialize the database tables
+    uvicorn.run(app, host="127.0.0.1", port=8000) 
