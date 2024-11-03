@@ -1,0 +1,56 @@
+/* src/styles/globals.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;600&display=swap');
+
+/* Resets some default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Ensure consistent box model */
+  }
+  
+  /* Set a consistent font family and line height */
+  body {
+    font-family: 'Geist', sans-serif;
+    line-height: 1.6; /* Improve readability */
+    background-color: #f8f9fa; /* Light gray background */
+    color: #343a40; /* Dark gray text color */
+  }
+  
+  /* Basic styling for headings */
+  h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 1rem; /* Space below headings */
+    font-weight: 600; /* Semi-bold headings */
+  }
+  
+  /* Anchor links */
+  a {
+    color: #0070f3; /* Default link color */
+    text-decoration: none; /* Remove underline */
+  }
+  
+  a:hover {
+    text-decoration: underline; /* Underline on hover */
+  }
+  
+  /* Container class for layout */
+  .container {
+    max-width: 1200px; /* Max width for the main content */
+    margin: 0 auto; /* Center the container */
+    padding: 0 2rem; /* Padding on sides */
+  }
+  
+  /* Styling for buttons */
+  button {
+    background-color: #0070f3; /* Button background color */
+    color: white; /* Button text color */
+    border: none; /* No border */
+    padding: 0.5rem 1rem; /* Padding */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor */
+  }
+  
+  button:hover {
+    background-color: #005bb5; /* Darker shade on hover */
+  }
+  
