@@ -4,16 +4,19 @@ from sqlalchemy import Column, Integer, String, DateTime, func
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker
 import uvicorn
+from sqlalchemy.ext.declarative import declarative_base
 
 # Dependency to get the database session
 async def get_db() -> AsyncSession:
     async with AsyncSessionLocal() as session:
         yield session
+
 from routers.users.routes import router as user_router
 
 # get the DB from .env file
 from dotenv import load_dotenv
 import os
+
 load_dotenv()
 DATABASE_URL = os.getenv("DATABASE_URL")  
 
@@ -34,13 +37,15 @@ app = FastAPI(
 # Add middleware to allow for CORS. 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000/"],
+    allow_origins=["http://localhost:3000"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"]
 )
 
 app.include_router(user_router)
+
+Base = declarative_base()
 
 # Create the database tables asynchronously
 async def init_db():

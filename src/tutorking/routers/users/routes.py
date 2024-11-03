@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Query
 
 from routers.users import service 
 from routers.users.schemas import User
@@ -11,8 +11,9 @@ from routers.users import service
 
 router = APIRouter()
 
-@router.put("/users/add_user/")
-async def create_user(username: str, email: str, db: AsyncSession = Depends(get_db)):
+@router.post("/users/add_user/")
+async def create_user(username: str = Query(...), email: str = Query(...), db: AsyncSession = Depends(get_db)):
+    print("Made it here!")
     does_user = await service.does_user_exist(username, email, db)
     if does_user:
         raise HTTPException(status_code=409, detail="User already exists.")

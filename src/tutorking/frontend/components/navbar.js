@@ -1,6 +1,7 @@
 import { signIn, signOut, useSession } from 'next-auth/react';
 import styles from '../styles/Navbar.module.css'
 import Link from 'next/link';
+import { FaSearch, FaBook } from 'react-icons/fa';
 
 const Navbar = () => {
   const { data: session, status } = useSession();
@@ -14,10 +15,10 @@ const Navbar = () => {
               <Link href="/" className={styles.link}>Home</Link>
             </li>
             <li>
-              <Link href="/search" className={styles.link}>Search</Link>
+              <Link href="/search" className={styles.link}><FaSearch size={30}/></Link>
             </li>
             <li>
-              <Link href="/learn" className={styles.link}>Learn</Link>
+              <Link href="/learn" className={styles.link}><FaBook size={30}/></Link>
             </li>
           </ul>
       </div>

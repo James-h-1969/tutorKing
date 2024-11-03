@@ -43,4 +43,5 @@
   gap: 2rem; /* Space between links */
   margin: 0; /* Remove default margin */
   padding: 0; /* Remove default padding */
+  align-items: center;
 }
