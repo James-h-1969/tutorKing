@@ -1,9 +1,15 @@
-
-
 .outside {
   padding: 70px;
 }
 
+.role{
+  display: inline-block;
+  padding: 10px;
+  font-size: 20px;
+  border-radius: 15px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
 
 .profile_img {
     width: 80px;  /* Set a width */
@@ -13,7 +19,7 @@
     margin-right: 10px; /* Space between the image and text */
   }
 
-  .flexContainer {
+.flexContainer {
     display: flex;            /* Enables flexbox layout */
     align-items: center;     /* Vertically centers items */
     justify-content: flex-start; /* Aligns items to the start */
@@ -32,12 +38,16 @@
 }
 
 .choose_role {
-  background-color: #f3e6a8; /* Light yellow */
-  width: 100%; /* Width of the outer container */
-  height: 200px;
-  padding: 30px;
-  margin-top:30px;
+  background-color: #f3e6a8;
+  width: 100%;
+  height: auto; /* Adjust to content height */
+  padding: 40px;
+  margin-top: 30px;
   border-radius: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
 }
 
 .choose_role p {
@@ -48,36 +58,91 @@
   padding-left: 20px;
 }
 
+.choose_role h2 {
+  font-size: 15px;
+  font-weight: 400;
+  padding-bottom: 2px;
+  font-style: italic;
+}
+
 .roles {
   display: flex;
-  margin-top: 30px;
   justify-content: space-around;
   gap: 10px;
   font-size: 20px;
+  width: 100%;
+  flex-wrap: wrap; /* Allow for better responsiveness */
+}
+
+.choosing {
+  width: 250px;
+  text-align: center;
+  border-radius: 10px;
+  padding: 20px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.choosing:hover {
+  background-color: #e0e0e0;
+}
+
+.choosing h3 {
+  margin-bottom: 10px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.roleDescription {
+  list-style-type: disc; /* Adds bullet points */
+  padding-left: 20px; /* Indent the list */
+  font-size: 14px;
+  color: #333;
+  text-align: left;
+}
+
+.roleHeader {
+  display: flex;
+  justify-content: space-between; /* Pushes the text to the left and button to the right */
+  align-items: end ; /* Vertically centers items */
+  gap: 20px;
+  width: 100%;
 }
 
 .select_button {
-  align-self: flex-end;
-  margin-top: 30px;
-  margin-right: 40px;
-  color: red;
+  padding: 15px 30px;
+  background-color: rgba(114, 83, 17, 0.6); /* Green background */
+  color: white; /* White text */
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 25px; /* Rounded corners */
   cursor: pointer;
-}
-
-.choosing{
-  width: 200px;
   text-align: center;
-  border-radius: 10px;
-  padding:20px
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  /* Ensures the button stays on the far right */
+  margin-left: auto; /* Pushes the button to the far right */
+  margin-bottom: 10px;
 }
 
 
-.role{
-  display: inline-block;
-  padding: 10px;
-  font-size: 20px;
-  border-radius: 15px;
-  padding-left: 40px;
-  padding-right: 40px;
+.select_button:hover {
+  background-color: rgba(71, 53, 13, 0.6); /* Slightly darker green on hover */
+  transform: translateY(-2px); /* Lift effect on hover */
+}
+
+.select_button:active {
+  background-color: rgba(214, 160, 43, 0.6); /* Even darker green when clicked */
+  transform: translateY(1px); /* Pressed effect */
+}
+
+.select_button:focus {
+  outline: none; /* Remove the default outline on focus */
+  box-shadow: 0 0 0 3px rgba(214, 160, 43, 0.6); /* Subtle focus ring */
+}
+
+.select_button:disabled {
+  pointer-events: none; /* Ensures no interaction with the button */
+  opacity: 0.2; /* More opacity reduction for disabled state */
 }

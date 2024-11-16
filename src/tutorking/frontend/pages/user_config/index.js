@@ -74,11 +74,13 @@ const UserConfig = () => {
         await fetchUser();
     }
 
+    console.log(currentlySelected)
+
     return (
         <div className={styles.outside}>
             <Head>
                 <title>tutorking</title>
-                <link rel="icon" href="/favicon.ico" />
+                <link rel="icon" href="/crown.ico" />
             </Head>
             <div className={styles.flexContainer}>
                 <h1 style={{ fontWeight: "bold", fontSize: "60px" }}>{session.user.name}</h1>
@@ -89,34 +91,54 @@ const UserConfig = () => {
             </div>
             {
                 user?.user.role_id == 1 ? 
-                <div className={`${styles.choose_role}`} style={{ fontFamily: "Geist Mono, monospace", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "100%" }}>
-                    <p>Choose Role</p>
+                <div className={`${styles.choose_role}`} style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", height: "100%" }}>
+                    <div className={styles.roleHeader}>
+                        <p>Choose Role</p>
+                        <h2>This cannot be changed</h2>
+                        <button className={styles.select_button} onClick={() => handleSubmit()} disabled={currentlySelected === -1}>Select</button>
+                    </div>
                     <div className={styles.roles}>
                         <div 
-                            onClick={() => handleSelection(2)} 
-                            style={{ background: currentlySelected === 2 ? "#f0f0f0" : "" }}
-                            className={styles.choosing}
+                        onClick={() => handleSelection(2)} 
+                        style={{ background: currentlySelected === 2 ? "#f0f0f0" : "" }}
+                        className={styles.choosing}
                         >
-                            Student
+                        <h3>Student</h3>
+                        <ul className={styles.roleDescription}>
+                            <li>Learn from tutors</li>
+                            <li>Access study materials</li>
+                            <li>Track progress</li>
+                        </ul>
                         </div>
 
                         <div 
-                            onClick={() => handleSelection(3)} 
-                            style={{ background: currentlySelected === 3 ? "#f0f0f0" : "" }}
-                            className={styles.choosing}
+                        onClick={() => handleSelection(3)} 
+                        style={{ background: currentlySelected === 3 ? "#f0f0f0" : "" }}
+                        className={styles.choosing}
                         >
-                            Parent
+                        <h3>Parent</h3>
+                        <ul className={styles.roleDescription}>
+                            <li>Monitor child's progress</li>
+                            <li>Assign tutors</li>
+                            <li>Manage payments</li>
+                        </ul>
                         </div>
+
                         <div 
-                            onClick={() => handleSelection(4)} 
-                            style={{ background: currentlySelected === 4 ? "#f0f0f0" : ""}}
-                            className={styles.choosing}
+                        onClick={() => handleSelection(4)} 
+                        style={{ background: currentlySelected === 4 ? "#f0f0f0" : ""}}
+                        className={styles.choosing}
                         >
-                            Tutor
+                        <h3>Tutor</h3>
+                        <ul className={styles.roleDescription}>
+                            <li>Teach students</li>
+                            <li>Set availability</li>
+                            <li>Track student performance</li>
+                        </ul>
                         </div>
                     </div>
-                    <div className={styles.select_button} onClick={() => handleSubmit()}>Select</div>
-                </div>
+                    
+                    </div>
                 : <div className={styles.role} style={{backgroundColor: user?.role.colour, fontFamily: "Geist Mono, monospace"}}>{capitalizeFirstLetter(user.role?.role_name)}</div>
             }
         </div>
