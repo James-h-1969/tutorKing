@@ -7,9 +7,10 @@ import { format } from 'date-fns'; // Importing date-fns for formatting dates
 import { useEffect, useState } from 'react';
 import { capitalizeFirstLetter } from '../../utils/misc';
 
+// function to get the user from the api
 const getUser = async (user) => {
     // Construct the request URL for adding the user
-    let base_url = `http://127.0.0.1:8000`;
+    let base_url = process.env.NEXT_PUBLIC_BACKEND_URL;
     let extra_url = `/users/get_user/?username=${encodeURIComponent(user.name)}&email=${encodeURIComponent(user.email)}&include_role_desc=${encodeURIComponent(true)}`;
     
     // Make the Axios request to get the user
@@ -17,13 +18,9 @@ const getUser = async (user) => {
     return response.data;
 };
 
+// function to set the role of the user from the api
 const setUserRole = async (user_id, role_id) => {
-    // check that the role has been selected
-    if (role_id == -1){
-        console.log("No role selected!");
-    }
-
-    let base_url = `http://127.0.0.1:8000`;
+    let base_url = process.env.NEXT_PUBLIC_BACKEND_URL;
     let extra_url = `/users/update_user_role?user_id=${encodeURIComponent(user_id)}&role_id=${encodeURIComponent(role_id)}`;
 
     // Make the Axios request to get the user
@@ -38,6 +35,7 @@ const UserConfig = () => {
     const [role, setRole] = useState(null);
     const [currentlySelected, setCurrentlySelected] = useState(-1);
 
+    // function that given a google user, gets the user data from the backend
     const fetchUser = async () => {
         try {
             const userData = await getUser(session.user);
@@ -61,6 +59,7 @@ const UserConfig = () => {
         return <div>Loading...</div>; 
     }
 
+    // state manager of the role selection
     function handleSelection(id){
         if (id == currentlySelected){
             setCurrentlySelected(-1);
@@ -69,12 +68,11 @@ const UserConfig = () => {
         }
     }
 
+    // function that runs when the submit button is pressed
     async function handleSubmit(){
         await setUserRole(user?.user.id, currentlySelected);
         await fetchUser();
     }
-
-    console.log(currentlySelected)
 
     return (
         <div className={styles.outside}>

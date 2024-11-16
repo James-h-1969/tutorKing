@@ -22,7 +22,8 @@ export default NextAuth({
       const email = user.email;
 
       // Construct the request URL for adding the user
-      let base_url = `http://127.0.0.1:8000`
+      let base_url = process.env.NEXT_PUBLIC_BACKEND_URL;
+      console.log(base_url)
       let extra_url = `/users/add_user/?username=${encodeURIComponent(username)}&email=${encodeURIComponent(email)}`;
       
       try {
