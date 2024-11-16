@@ -2,6 +2,7 @@ import { signIn, signOut, useSession } from 'next-auth/react';
 import styles from '../styles/Navbar.module.css'
 import Link from 'next/link';
 import { FaSearch, FaBook } from 'react-icons/fa';
+import Image from 'next/image'
 
 const Navbar = () => {
   const { data: session, status } = useSession();
@@ -28,7 +29,11 @@ const Navbar = () => {
             <>
               <div className={styles.right}>
                 <button onClick={() => signOut()} style={{backgroundColor:"#f3e6a8", color:"black", height:"80%", fontWeight:"bold"}}>Sign Out</button>
-                <img className={styles.profile_img} src={session.user.image} alt="User Image" />
+                <li>
+                  <Link href="/user_config" className={styles.link}>
+                    <Image className={styles.profile_img} src={session.user?.image} alt="User Image" width={40} height={40} />
+                  </Link>
+                </li>
               </div>
             </>
           ) : (
