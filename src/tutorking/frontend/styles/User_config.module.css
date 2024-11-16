@@ -1,0 +1,83 @@
+
+
+.outside {
+  padding: 70px;
+}
+
+
+.profile_img {
+    width: 80px;  /* Set a width */
+    height: 80px; /* Set a height */
+    border-radius: 50%; /* Makes the image circular */
+    object-fit: cover; /* Ensures the image covers the area */
+    margin-right: 10px; /* Space between the image and text */
+  }
+
+  .flexContainer {
+    display: flex;            /* Enables flexbox layout */
+    align-items: center;     /* Vertically centers items */
+    justify-content: flex-start; /* Aligns items to the start */
+    gap: 40px;               /* Adds space between items, adjust as needed */
+}
+
+.profileBox {
+  margin-top: 10px; /* Space between profile header and the box */
+  padding: 10px; /* Padding inside the box */
+  background-color: #f0f0f0; /* Light grey background */
+  border-radius: 5px; /* Rounded corners */
+  font-size: 14px; /* Font size */
+  display: inline-block;
+  border-radius: 10px;
+  font-weight: "bold";
+}
+
+.choose_role {
+  background-color: #f3e6a8; /* Light yellow */
+  width: 100%; /* Width of the outer container */
+  height: 200px;
+  padding: 30px;
+  margin-top:30px;
+  border-radius: 50px;
+}
+
+.choose_role p {
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 30px;
+  border-radius: 20px;
+  padding-left: 20px;
+}
+
+.roles {
+  display: flex;
+  margin-top: 30px;
+  justify-content: space-around;
+  gap: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.select_button {
+  align-self: flex-end;
+  margin-top: 30px;
+  margin-right: 40px;
+  color: red;
+  cursor: pointer;
+}
+
+.choosing{
+  width: 200px;
+  text-align: center;
+  border-radius: 10px;
+  padding:20px
+}
+
+
+.role{
+  display: inline-block;
+  padding: 10px;
+  font-size: 20px;
+  border-radius: 15px;
+  padding-left: 40px;
+  padding-right: 40px;
+}

@@ -1,4 +1,17 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+    reactStrictMode: true,
+    transpilePackages: ["geist"],
+    images: {
+        remotePatterns: [
+          {
+            protocol: "https",
+            hostname: "*.googleusercontent.com",
+            port: "",
+            pathname: "**",
+          },
+        ],
+      },
+};
 
 export default nextConfig;
